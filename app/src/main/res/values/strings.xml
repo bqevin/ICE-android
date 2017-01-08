@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Emergency Responder</string>
-    <string name="dummy_button">Add ICE</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="add_ice">Add ICE</string>
+    <string name="cont">Initiate emergency protocol</string>
 </resources>
