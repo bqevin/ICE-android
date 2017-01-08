@@ -8,6 +8,10 @@ import android.os.Handler;
 import android.telephony.SmsManager;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+
+import static android.view.View.*;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -42,12 +46,12 @@ public class MainActivity extends AppCompatActivity {
             // Note that some of these constants are new as of API 16 (Jelly Bean)
             // and API 19 (KitKat). It is safe to use them, as they are inlined
             // at compile-time and do nothing on earlier devices.
-            mContentView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE
-                    | View.SYSTEM_UI_FLAG_FULLSCREEN
-                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+            mContentView.setSystemUiVisibility(SYSTEM_UI_FLAG_LOW_PROFILE
+                    | SYSTEM_UI_FLAG_FULLSCREEN
+                    | SYSTEM_UI_FLAG_LAYOUT_STABLE
+                    | SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                    | SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                    | SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         }
     };
     private View mControlsView;
@@ -59,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
             if (actionBar != null) {
                 actionBar.show();
             }
-            mControlsView.setVisibility(View.VISIBLE);
+            mControlsView.setVisibility(VISIBLE);
         }
     };
     private boolean mVisible;
@@ -74,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
      * system UI. This is to prevent the jarring behavior of controls going away
      * while interacting with activity UI.
      */
-    private final View.OnTouchListener mDelayHideTouchListener = new View.OnTouchListener() {
+    private final OnTouchListener mDelayHideTouchListener = new OnTouchListener() {
         @Override
         public boolean onTouch(View view, MotionEvent motionEvent) {
             if (AUTO_HIDE) {
@@ -96,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         // Set up the user interaction to manually show or hide the system UI.
-        mContentView.setOnClickListener(new View.OnClickListener() {
+        mContentView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 toggle();
@@ -106,9 +110,21 @@ public class MainActivity extends AppCompatActivity {
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
-        findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
+        findViewById(R.id.add_ice).setOnTouchListener(mDelayHideTouchListener);
 
         //Send SMS method
+        String messageToSend = "Am in emergency situation. Kindly call ^Kevin";
+        String number = "+254719747908"; //Joram Mwashighadi number
+        SmsManager.getDefault().sendTextMessage(number, null, messageToSend, null,null);
+
+        Button sos = (Button) findViewById(R.id.add_ice);
+        sos.setOnClickListener(new OnClickListener(){
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                Toast.makeText(getApplicationContext(), "You broadcasted SOS to Joram Mwashighadi in ur ICE Contact List", Toast.LENGTH_LONG).show();
+            }
+
+        });
 
     }
 
@@ -136,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.hide();
         }
-        mControlsView.setVisibility(View.GONE);
+        mControlsView.setVisibility(GONE);
         mVisible = false;
 
         // Schedule a runnable to remove the status and navigation bar after a delay
@@ -147,8 +163,8 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("InlinedApi")
     private void show() {
         // Show the system bar
-        mContentView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
+        mContentView.setSystemUiVisibility(SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
         mVisible = true;
 
         // Schedule a runnable to display UI elements after a delay

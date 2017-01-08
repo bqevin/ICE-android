@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Emergency Responder</string>
-    <string name="add_ice">Add ICE</string>
+    <string name="add_ice">Add ICE Contact</string>
+    <string name="sos">SOS Broadcast</string>
     <string name="cont">Initiate emergency protocol</string>
 </resources>
