@@ -27,7 +27,7 @@
         </activity>
         <activity
             android:name=".AddICEActivity"
-            android:label="@string/title_activity_add_ice"
+            android:label="@string/add_ice"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
