@@ -19,7 +19,7 @@
         android:layout_height="130dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="70dp"
         android:src="@drawable/ok" />
 
 
@@ -39,27 +39,17 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/primary" />
 
-    <LinearLayout
-        android:layout_alignParentBottom="true"
-        android:id="@+id/fullscreen_content_controls"
-        style="?metaButtonBarStyle"
-        android:layout_width="match_parent"
+    <Button
+        android:layout_below="@+id/splash_quote"
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        android:id="@+id/send_sos"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center_horizontal"
-        android:orientation="horizontal"
-        tools:ignore="UselessParent">
+        android:text="@string/sos"
+        android:theme="@style/SOSButton"/>
 
-        <Button
-            android:background="@color/accent"
-            android:id="@+id/send_sos"
-            style="?metaButtonBarButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textColor="@color/white"
-            android:text="@string/sos" />
 
-    </LinearLayout>
 
 
 

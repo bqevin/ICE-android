@@ -1,6 +1,7 @@
 package com.projects.kevinbarassa.emergencyresponder;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -44,15 +45,24 @@ public class MainActivity extends AppCompatActivity {
         FloatingActionButton add_ice = (com.getbase.floatingactionbutton.FloatingActionButton) findViewById(R.id.add_button);
         Button sos = (Button) findViewById(R.id.send_sos);
 
-        //Send SMS method
+        //Add ICE on Fab
+        add_ice.setOnClickListener(new OnClickListener(){
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,AddICEActivity.class);
+                startActivity(intent);
+                finish();
+            }
+
+        });
+
+        //Send SMS on SOS
         final String messageToSend = "Am in emergency situation. Kindly call ^Kevin";
         final String ice1 = "+254719747908"; //Joram Mwashighadi number
-
 
         sos.setOnClickListener(new OnClickListener(){
             public void onClick(View v) {
                 SmsManager.getDefault().sendTextMessage(ice1, null, messageToSend, null,null);
-                Toast.makeText(getApplicationContext(), "You broadcasted SOS to Joram Mwashighadi in ur ICE Contact List", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "You broadcasted SOS to "+ice1+" in ur ICE Contact List", Toast.LENGTH_LONG).show();
             }
 
         });

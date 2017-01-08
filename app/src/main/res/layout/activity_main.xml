@@ -33,9 +33,9 @@
         android:layout_alignParentEnd="false"
         android:layout_alignParentBottom="true"
         fab:fab_icon="@drawable/ic_person_add_black_24dp"
-        fab:fab_colorNormal="@color/primary_light"
+        fab:fab_colorNormal="@color/white"
         fab:fab_title="@string/add_ice"
-        fab:fab_colorPressed="@color/primary"
+        fab:fab_colorPressed="@color/accent"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         />
