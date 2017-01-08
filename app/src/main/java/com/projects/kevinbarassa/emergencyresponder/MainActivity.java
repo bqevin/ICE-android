@@ -113,14 +113,13 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.add_ice).setOnTouchListener(mDelayHideTouchListener);
 
         //Send SMS method
-        String messageToSend = "Am in emergency situation. Kindly call ^Kevin";
-        String number = "+254719747908"; //Joram Mwashighadi number
-        SmsManager.getDefault().sendTextMessage(number, null, messageToSend, null,null);
+        final String messageToSend = "Am in emergency situation. Kindly call ^Kevin";
+        final String ice1 = "+254719747908"; //Joram Mwashighadi number
 
         Button sos = (Button) findViewById(R.id.add_ice);
         sos.setOnClickListener(new OnClickListener(){
             public void onClick(View v) {
-                // TODO Auto-generated method stub
+                SmsManager.getDefault().sendTextMessage(ice1, null, messageToSend, null,null);
                 Toast.makeText(getApplicationContext(), "You broadcasted SOS to Joram Mwashighadi in ur ICE Contact List", Toast.LENGTH_LONG).show();
             }
 
