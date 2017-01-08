@@ -2,5 +2,6 @@
     <string name="app_name">Emergency Responder</string>
     <string name="add_ice">Add ICE Contact</string>
     <string name="sos">SOS Broadcast</string>
-    <string name="cont">Initiate emergency protocol</string>
+    <string name="cont">Your ICE Contact List is Set!</string>
+    <string name="title_activity_test">TestActivity</string>
 </resources>
