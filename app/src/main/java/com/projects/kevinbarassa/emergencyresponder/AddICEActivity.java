@@ -23,8 +23,10 @@ public class AddICEActivity extends AppCompatActivity {
         done_ice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(AddICEActivity.this,ProcessICEActivity.class);
+                Intent intent = new Intent(AddICEActivity.this,MapsActivity.class);
                 startActivity(intent);
+//                Intent intent = new Intent(AddICEActivity.this,ProcessICEActivity.class);
+//                startActivity(intent);
 //                Snackbar.make(view, "Done adding ICE", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
             }

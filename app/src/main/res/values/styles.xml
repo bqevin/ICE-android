@@ -8,7 +8,7 @@
         <item name="colorAccent">@color/accent</item>
     </style>
 
-    <style name="SOSButton" parent="Theme.AppCompat.Light">
+    <style name="ProfileButton" parent="Theme.AppCompat.Light">
         <item name="colorControlHighlight">@color/primary</item>
         <item name="colorButtonNormal">@color/primary_dark</item>
     </style>

@@ -14,11 +14,34 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"></uses-permission>
 
+    <!--Google Maps from here-->
+    <permission
+        android:name="com.projects.kevinbarassa.emergencyresponder.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.projects.kevinbarassa.emergencyresponder.permission.MAPS_RECEIVE" />
+
+    <uses-sdk
+        android:minSdkVersion="12"
+        android:targetSdkVersion="17" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <!-- Required to show current location -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+
+
     <uses-feature
         android:name="android.hardware.sensor.accelerometer"
         android:required="true" />
 
     <application
+        android:largeHeap="true"
         android:name=".app.AppController"
         android:allowBackup="true"
         android:icon="@drawable/call"
@@ -96,6 +119,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.projects.kevinbarassa.emergencyresponder.MainActivity" />
         </activity>
+        <activity
+            android:name=".MapsActivity"
+            android:label="@string/title_activity_process_ice"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.projects.kevinbarassa.emergencyresponder.MainActivity" />
+        </activity>
         <receiver
             android:name=".BootReceiver"
             android:enabled="true"
@@ -115,6 +147,16 @@
         <service android:name=".EmergencyService"
             android:exported="false">
         </service>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version"
+            />
+
     </application>
 
 </manifest>

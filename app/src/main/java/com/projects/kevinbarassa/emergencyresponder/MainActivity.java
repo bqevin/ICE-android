@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private SessionManager session;
     private ShakeListener mShaker;
     private SQLiteHandler db;
+    //GPS object
+    GPSTracker gps;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,10 +69,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-
         //Fab and button
         FloatingActionButton add_ice = (com.getbase.floatingactionbutton.FloatingActionButton) findViewById(R.id.add_button);
-        Button sos = (Button) findViewById(R.id.send_sos);
+        Button profile = (Button) findViewById(R.id.profile_btn);
 
         //Add ICE on Fab
         add_ice.setOnClickListener(new OnClickListener(){
@@ -81,36 +82,52 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         });
 
-
-        sos.setOnClickListener(new OnClickListener(){
-            public void onClick(View v) {
-
+        //Go to profile
+        profile.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Launching the login activity
+                Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+                startActivity(intent);
             }
-
         });
 
     }
     private void sendSMS(){
+        //Location
+        // create class object
+        gps = new GPSTracker(MainActivity.this);
+        // check if GPS enabled
+        if (gps.canGetLocation()) {
+            Toast.makeText(getApplicationContext(), "Your Location is - \nLat: " + gps.getLatitude() + "\nLong: " + gps.getLongitude(), Toast.LENGTH_LONG).show();
+
+        } else {
+            // can't get location
+            // GPS or Network is not enabled
+            // Ask user to enable GPS/network in settings
+            gps.showSettingsAlert();
+        }
+
         //Send SMS on SOS
         String messageToSend = "Am in emergency situation. Kindly call ^Kevin";
         String ice1 = "+254719747908"; //Joram Mwashighadi number
        // SmsManager.getDefault().sendTextMessage(ice1, null, messageToSend, null,null);
-        if(!((Activity) this).isFinishing())
-        {
+        if(!((Activity) this).isFinishing()) {
         new BottomDialog.Builder(this)
                 .setTitle("Broadcast Alert!")
-                .setContent("You broadcasted SOS to ur ICE Contact List")
-                .setIcon(R.drawable.call)
+                .setContent("You just alerted your emergency contact. Keep calm help is on way")
+                //.setIcon(R.drawable.call)
+                .setNegativeText("Close")
+                .setNegativeTextColorResource(R.color.accent)
                 .show();
         }
-
 
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
                         .setSmallIcon(R.drawable.call)
                         .setContentTitle("Broadcast Alert!")
-                        .setContentText("Your ICE Contact has been informed of your emergency")
-                        .setStyle(new NotificationCompat.BigTextStyle().bigText("Keep calm and wait for the response. You can shake your phone once more to repeat SOS broadcasting!"));
+                        .setContentText("Your Emergency Contact has been informed")
+                        .setStyle(new NotificationCompat.BigTextStyle().bigText("Keep calm and wait for help!"));
         //Update notification
         NotificationManager mNotificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);

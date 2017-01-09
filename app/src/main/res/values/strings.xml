@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">Emergency Responder</string>
     <string name="add_ice">Add ICE Contact</string>
-    <string name="sos">SOS Broadcast</string>
+    <string name="profile">Update Profile</string>
     <string name="cont">Your ICE Contact List is Set!</string>
     <string name="title_activity_test">TestActivity</string>
     <string name="title_activity_process_ice">Process ICE</string>
+    <string name="google_maps_key">AIzaSyBhPtQrYeZ6uOq7lRGaR6hg02M-2RUybGk</string>
 </resources>
