@@ -1,5 +1,6 @@
 package com.projects.kevinbarassa.emergencyresponder;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -22,8 +23,10 @@ public class AddICEActivity extends AppCompatActivity {
         done_ice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Done adding ICE", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(AddICEActivity.this,ProcessICEActivity.class);
+                startActivity(intent);
+//                Snackbar.make(view, "Done adding ICE", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
             }
         });
 

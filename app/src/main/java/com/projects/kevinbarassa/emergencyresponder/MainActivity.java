@@ -12,17 +12,22 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.joaquimley.faboptions.FabOptions;
 
 import static android.view.View.*;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener  {
 
     private ShakeListener mShaker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        FabOptions fabOptions = (FabOptions) findViewById(R.id.fab_options);
+        fabOptions.setButtonsMenu(this, R.menu.menu);
+        fabOptions.setOnClickListener(this);
 
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -40,6 +45,10 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
+
+
 
         //Fab and button
         FloatingActionButton add_ice = (com.getbase.floatingactionbutton.FloatingActionButton) findViewById(R.id.add_button);
@@ -80,4 +89,30 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
     }
 
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.faboptions_add:
+                Intent intent = new Intent(MainActivity.this,AddICEActivity.class);
+                startActivity(intent);
+                break;
+
+            case R.id.faboptions_view:
+                Toast.makeText(MainActivity.this, "View ICE", Toast.LENGTH_SHORT).show();
+                break;
+
+
+            case R.id.faboptions_edit:
+                Toast.makeText(MainActivity.this, "Edit ICE", Toast.LENGTH_SHORT).show();
+                break;
+
+            case R.id.faboptions_share:
+                Toast.makeText(MainActivity.this, "Share ICE", Toast.LENGTH_SHORT).show();
+                break;
+
+            default:
+                // no-op
+        }
+    }
 }
