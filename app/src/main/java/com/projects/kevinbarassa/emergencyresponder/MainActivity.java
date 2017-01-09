@@ -10,9 +10,9 @@ import android.telephony.SmsManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
 import com.getbase.floatingactionbutton.FloatingActionButton;
-import com.joaquimley.faboptions.FabOptions;
+import com.github.javiersantos.bottomdialogs.BottomDialog;
+
 
 import static android.view.View.*;
 
@@ -25,13 +25,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        FabOptions fabOptions = (FabOptions) findViewById(R.id.fab_options);
-        fabOptions.setButtonsMenu(this, R.menu.menu);
-        fabOptions.setOnClickListener(this);
 
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+//        FabOptions fabOptions = (FabOptions) findViewById(R.id.fab_options);
+//        fabOptions.setButtonsMenu(this, R.menu.menu);
+//        fabOptions.setOnClickListener(this);
 
         //Shaking params
         final Vibrator vibe = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
@@ -41,7 +41,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onShake()
             {
                 vibe.vibrate(100);
-                Toast.makeText(getApplicationContext(), "Just got shaken", Toast.LENGTH_LONG).show();
+                sendSMS();
+                //Toast.makeText(getApplicationContext(), "Just got shaken", Toast.LENGTH_LONG).show();
 
             }
         });
@@ -63,19 +64,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         });
 
-        //Send SMS on SOS
-        final String messageToSend = "Am in emergency situation. Kindly call ^Kevin";
-        final String ice1 = "+254719747908"; //Joram Mwashighadi number
 
         sos.setOnClickListener(new OnClickListener(){
             public void onClick(View v) {
-                SmsManager.getDefault().sendTextMessage(ice1, null, messageToSend, null,null);
-                Toast.makeText(getApplicationContext(), "You broadcasted SOS to "+ice1+" in ur ICE Contact List", Toast.LENGTH_LONG).show();
+
             }
 
         });
 
     }
+    private void sendSMS(){
+        //Send SMS on SOS
+        String messageToSend = "Am in emergency situation. Kindly call ^Kevin";
+        String ice1 = "+254719747908"; //Joram Mwashighadi number
+       // SmsManager.getDefault().sendTextMessage(ice1, null, messageToSend, null,null);
+        new BottomDialog.Builder(this)
+                .setTitle("Broadcast Alert!")
+                .setContent("You broadcasted SOS to ur ICE Contact List")
+                .setIcon(R.drawable.call)
+                .show();
+        //Toast.makeText(getApplicationContext(), "", Toast.LENGTH_LONG).show();
+    }
+
     @Override
     public void onResume()
     {
