@@ -2,16 +2,33 @@ package com.projects.kevinbarassa.emergencyresponder;
 
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.os.Bundle;
 import android.view.View;
 
 import com.luseen.verticalintrolibrary.VerticalIntro;
 import com.luseen.verticalintrolibrary.VerticalIntroItem;
+import com.projects.kevinbarassa.emergencyresponder.helper.SessionManager;
 
 /**
  * Created by Kevin Barassa on 09-Jan-17.
  */
 
 public class AppIntroActivity extends VerticalIntro {
+
+    private SessionManager session;
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // Session manager
+        session = new SessionManager(getApplicationContext());
+
+        // Check if user is already logged in or not
+        if (session.isLoggedIn()) {
+            // User is already logged in. Take him to main activity
+            Intent intent = new Intent(AppIntroActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+    }
     @Override
     protected void init() {
 
@@ -32,7 +49,7 @@ public class AppIntroActivity extends VerticalIntro {
                 .build());
 
         addIntroItem(new VerticalIntroItem.Builder()
-                .backgroundColor(R.color.primary_dark)
+                .backgroundColor(R.color.primary)
                 .image(R.drawable.location)
                 .title("Location tracking")
                 .text("Once emergency mode activated, your location will be monitored for next 24hrs and logged to your private account " +

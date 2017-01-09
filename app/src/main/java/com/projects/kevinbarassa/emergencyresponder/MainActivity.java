@@ -1,8 +1,11 @@
 package com.projects.kevinbarassa.emergencyresponder;
 
+import android.app.Activity;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Vibrator;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -12,6 +15,8 @@ import android.widget.Button;
 import android.widget.Toast;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.github.javiersantos.bottomdialogs.BottomDialog;
+import com.projects.kevinbarassa.emergencyresponder.helper.SQLiteHandler;
+import com.projects.kevinbarassa.emergencyresponder.helper.SessionManager;
 
 
 import static android.view.View.*;
@@ -19,7 +24,9 @@ import static android.view.View.*;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener  {
 
+    private SessionManager session;
     private ShakeListener mShaker;
+    private SQLiteHandler db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +40,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        fabOptions.setButtonsMenu(this, R.menu.menu);
 //        fabOptions.setOnClickListener(this);
 
+        // SqLite database handler
+        db = new SQLiteHandler(getApplicationContext());
+        // session manager
+        session = new SessionManager(getApplicationContext());
+
+        if (!session.isLoggedIn()) {
+            logoutUser();
+        }
+
+        if (savedInstanceState != null) {
+            return;
+        }
         //Shaking params
         final Vibrator vibe = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
 
@@ -42,8 +61,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             {
                 vibe.vibrate(100);
                 sendSMS();
-                //Toast.makeText(getApplicationContext(), "Just got shaken", Toast.LENGTH_LONG).show();
-
             }
         });
 
@@ -78,12 +95,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String messageToSend = "Am in emergency situation. Kindly call ^Kevin";
         String ice1 = "+254719747908"; //Joram Mwashighadi number
        // SmsManager.getDefault().sendTextMessage(ice1, null, messageToSend, null,null);
+        if(!((Activity) this).isFinishing())
+        {
         new BottomDialog.Builder(this)
                 .setTitle("Broadcast Alert!")
                 .setContent("You broadcasted SOS to ur ICE Contact List")
                 .setIcon(R.drawable.call)
                 .show();
-        //Toast.makeText(getApplicationContext(), "", Toast.LENGTH_LONG).show();
+        }
+
+
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.drawable.call)
+                        .setContentTitle("Broadcast Alert!")
+                        .setContentText("Your ICE Contact has been informed of your emergency")
+                        .setStyle(new NotificationCompat.BigTextStyle().bigText("Keep calm and wait for the response. You can shake your phone once more to repeat SOS broadcasting!"));
+        //Update notification
+        NotificationManager mNotificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        // mId allows you to update the notification later on.
+        mNotificationManager.notify(3, mBuilder.build());
     }
 
     @Override
@@ -124,5 +156,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             default:
                 // no-op
         }
+    }
+
+    private void logoutUser() {
+        session.setLogin(false);
+
+        db.dropDB();
+
+        // Launching the login activity
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
