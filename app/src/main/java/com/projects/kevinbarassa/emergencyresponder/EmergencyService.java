@@ -12,8 +12,8 @@ import android.support.v4.app.NotificationCompat;
  */
 
 public class EmergencyService extends IntentService {
-    public EmergencyService(String name) {
-        super(name);
+    public EmergencyService() {
+        super("EmergencyService");
     }
 
     @Override

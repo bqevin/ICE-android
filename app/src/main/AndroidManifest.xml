@@ -55,7 +55,25 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.projects.kevinbarassa.emergencyresponder.MainActivity" />
         </activity>
-        
+        <receiver
+            android:name=".BootReceiver"
+            android:enabled="true"
+            android:process=":remote">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REPLACED" />
+                <data android:scheme="package" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+        <service android:name=".EmergencyService"
+            android:exported="false">
+        </service>
     </application>
 
 </manifest>

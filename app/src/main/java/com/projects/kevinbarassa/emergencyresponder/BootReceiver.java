@@ -9,8 +9,14 @@ import android.content.Intent;
  */
 
 public class BootReceiver extends BroadcastReceiver {
+    public static final int REQUEST_CODE = 12345;
+    public static final String ACTION = "com.projects.kevinbarassa.emergencyresponder";
     @Override
     public void onReceive(Context context, Intent intent) {
-
+        //If boot complete, Emergency Service is initiated
+        if (intent.getAction().equalsIgnoreCase(Intent.ACTION_BOOT_COMPLETED)) {
+            Intent serviceIntent = new Intent(context, EmergencyService.class);
+            context.startService(serviceIntent);
+        }
     }
 }
