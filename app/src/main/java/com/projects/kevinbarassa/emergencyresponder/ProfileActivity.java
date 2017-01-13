@@ -65,7 +65,7 @@ public class ProfileActivity extends AppCompatActivity {
         String email = user.get("email");
         String blood = user.get("blood");
         String allergy = user.get("allergy");
-        String problem = user.get("condition");
+        String problem = user.get("problem");
         String phone = user.get("phone");
 
         if (email.isEmpty()) {
