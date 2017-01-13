@@ -88,7 +88,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="\nTell us a bit about your awesome self"
+                android:text="\nBlood Group"
                 android:textColor="#333"
                 android:padding="3dip"
                 android:shadowColor="#fff"
@@ -97,11 +97,11 @@
                 />
 
             <EditText
-                android:id="@+id/bio_profile"
+                android:id="@+id/blood_profile"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:hint="This will be helpful to match you with counsellor who isn't boring ;)"
-                android:minLines="4"
+                android:hint="Very useful incase of urgent transfusion"
+                android:minLines="1"
                 android:maxLength="1000"
                 ></EditText>
 
@@ -110,7 +110,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="\nWhere do you live?"
+                android:text="\nList all allergies you have"
                 android:textColor="#333"
                 android:padding="3dip"
                 android:shadowColor="#fff"
@@ -119,10 +119,31 @@
                 />
 
             <EditText
-                android:id="@+id/location_profile"
+                android:id="@+id/allergy_profile"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:hint="e.g Mombasa, Kenya"
+                android:hint="or None if no allergy"
+                android:minLines="1"
+                ></EditText>
+
+            <TextView
+                android:id="@+id/kdds"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="\nWhat condition do you have?"
+                android:textColor="#333"
+                android:padding="3dip"
+                android:shadowColor="#fff"
+                android:shadowRadius="1"
+                android:shadowDy="-1"
+                />
+
+            <EditText
+                android:id="@+id/problem_profile"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="or None if no condition"
                 android:minLines="1"
                 ></EditText>
 

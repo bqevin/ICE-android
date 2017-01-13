@@ -21,9 +21,10 @@ import java.util.HashMap;
 public class ProfileActivity extends AppCompatActivity {
 
     private TextView txtPhone;
-    private TextView txtLocation;
+    private TextView txtAllergy;
+    private TextView txtProblem;
     private TextView txtEmail;
-    private TextView txtBio;
+    private TextView txtBlood;
 
     private SQLiteHandler db;
     private SessionManager session;
@@ -37,10 +38,11 @@ public class ProfileActivity extends AppCompatActivity {
 
         CollapsingToolbarLayout collapsingToolbar =
                 (CollapsingToolbarLayout) findViewById(R.id.profile_toolbar);
-        txtEmail = (TextView) findViewById(R.id.email);
-        txtLocation = (TextView) findViewById(R.id.location);
-        txtBio = (TextView) findViewById(R.id.bio);
-        txtPhone = (TextView) findViewById(R.id.phone);
+        txtEmail = (TextView) findViewById(R.id.d_email);
+        txtAllergy = (TextView) findViewById(R.id.d_allergy);
+        txtProblem = (TextView) findViewById(R.id.d_condition);
+        txtBlood = (TextView) findViewById(R.id.d_blood);
+        txtPhone = (TextView) findViewById(R.id.d_phone);
 
 
 
@@ -61,8 +63,9 @@ public class ProfileActivity extends AppCompatActivity {
 
         String name = user.get("name");
         String email = user.get("email");
-        String bio = user.get("bio");
-        String location = user.get("location");
+        String blood = user.get("blood");
+        String allergy = user.get("allergy");
+        String problem = user.get("condition");
         String phone = user.get("phone");
 
         if (email.isEmpty()) {
@@ -72,9 +75,10 @@ public class ProfileActivity extends AppCompatActivity {
         // Displaying the user details on the screen
         collapsingToolbar.setTitle(name);
         txtEmail.setText(email);
-        txtBio.setText(bio);
+        txtBlood.setText(blood);
         txtPhone.setText(phone);
-        txtLocation.setText(location);
+        txtAllergy.setText(allergy);
+        txtProblem.setText(problem);
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);

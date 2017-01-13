@@ -135,17 +135,19 @@ public class LoginActivity extends Activity {
                         String email = user.getString("email");
                         String created_at = user
                                 .getString("created_at");
-                        String bio = user
-                                .getString("bio");
+                        String blood = user
+                                .getString("blood");
                         String phone = user
                                 .getString("phone");
-                        String location = user
-                                .getString("location");
+                        String allergy = user
+                                .getString("allergy");
+                        String problem = user
+                                .getString("problem");
                         String updated_at = user
                                 .getString("updated_at");
 
                         // Inserting row in users table
-                        db.addUser(name, email, uid, bio, phone, location, updated_at, created_at);
+                        db.addUser(name, email, uid, blood, phone, allergy, problem, updated_at, created_at);
 
                         // Launch main activity
                         Intent intent = new Intent(LoginActivity.this,

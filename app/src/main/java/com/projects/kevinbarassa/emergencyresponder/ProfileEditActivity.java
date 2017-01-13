@@ -34,9 +34,10 @@ public class ProfileEditActivity extends AppCompatActivity {
     private SQLiteHandler db;
     private SessionManager session;
     private ProgressDialog pDialog;
-    private EditText inputBio;
-    private EditText inputLocation;
+    private EditText inputBlood;
+    private EditText inputAllergy;
     private EditText inputPhone;
+    private EditText inputCondition;
     private Button btnEdit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +51,10 @@ public class ProfileEditActivity extends AppCompatActivity {
 //                (CollapsingToolbarLayout) findViewById(R.id.profile_toolbar);
 //        txtEmail = (TextView) findViewById(R.id.email);
 
-        inputBio = (EditText) findViewById(R.id.bio_profile);
+        inputBlood = (EditText) findViewById(R.id.blood_profile);
         inputPhone = (EditText) findViewById(R.id.phone_profile);
-        inputLocation = (EditText) findViewById(R.id.location_profile);
+        inputAllergy = (EditText) findViewById(R.id.allergy_profile);
+        inputCondition = (EditText) findViewById(R.id.problem_profile);
         btnEdit = (Button) findViewById(R.id.edit_btn);
 
         // Progress dialog
@@ -73,17 +75,18 @@ public class ProfileEditActivity extends AppCompatActivity {
         // Edit Button Click event
         btnEdit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                String bio = inputBio.getText().toString().trim();
+                String blood = inputBlood.getText().toString().trim();
                 String phone = inputPhone.getText().toString().trim();
-                String location = inputLocation.getText().toString().trim();
+                String allergy = inputAllergy.getText().toString().trim();
+                String condition = inputCondition.getText().toString().trim();
 
                 // Fetching email from sqlite
                 HashMap<String, String> user = db.getUserDetails();
                 String email = user.get("email");
                 //Check to see user has filled all fields
-                if (!bio.isEmpty() && !phone.isEmpty() && !location.isEmpty()) {
-                    Log.d("Post data","Email: "+email + "  Bio: "+bio + "  Phone: "+phone + "  Location: "+location);
-                    updateUser(email, bio, phone, location);
+                if (!blood.isEmpty() && !phone.isEmpty() && !allergy.isEmpty() && !condition.isEmpty()) {
+                    Log.d("Post data","Email: "+email + "  Blood: "+blood + "  Phone: "+phone + "  Alllergy: "+allergy+" Condition: "+condition);
+                    updateUser(email, blood, phone, allergy);
                 } else {
                     Toast.makeText(getApplicationContext(),
                             "Please fill your details before updating!", Toast.LENGTH_LONG)
@@ -130,18 +133,20 @@ public class ProfileEditActivity extends AppCompatActivity {
                                 .getString("created_at");
                         String updated_at = user
                                 .getString("updated_at");
-                        String bio = user
-                                .getString("bio");
+                        String blood = user
+                                .getString("blood");
                         String phone = user
                                 .getString("phone");
-                        String location = user
-                                .getString("location");
+                        String allergy = user
+                                .getString("allergy");
+                        String problem = user
+                                .getString("problem");
 
                         // Delete existing data first
                         db.deleteUsers();
 
                         // Inserting row in users table
-                        db.addUser(name, email, uid, bio, phone, location, updated_at, created_at);
+                        db.addUser(name, email, uid, blood, phone, allergy, problem, updated_at, created_at);
                         Toast.makeText(getApplicationContext(), "You info has successfully been updated!", Toast.LENGTH_LONG).show();
 
                         // Launch login activity

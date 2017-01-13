@@ -33,8 +33,9 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     private static final String KEY_EMAIL = "email";
     private static final String KEY_UID = "uid";
     private static final String KEY_SIMU = "phone";
-    private static final String KEY_LOCATION = "location";
-    private static final String KEY_BIO = "bio";
+    private static final String KEY_ALLERGY = "allergy";
+    private static final String KEY_BLOOD = "blood";
+    private static final String KEY_PROBLEM = "problem";
     private static final String KEY_UPDATED_AT = "updated_at";
     private static final String KEY_CREATED_AT = "created_at";
 
@@ -48,8 +49,8 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         String CREATE_LOGIN_TABLE = "CREATE TABLE " + TABLE_USER + "("
                 + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT,"
                 + KEY_EMAIL + " TEXT UNIQUE," + KEY_UID + " TEXT,"
-                + KEY_BIO + " TEXT," + KEY_SIMU + " TEXT,"
-                + KEY_LOCATION + " TEXT," + KEY_UPDATED_AT + " TEXT,"
+                + KEY_BLOOD + " TEXT," + KEY_SIMU + " TEXT,"
+                + KEY_ALLERGY + " TEXT," + KEY_PROBLEM + " TEXT," + KEY_UPDATED_AT + " TEXT,"
                 + KEY_CREATED_AT + " TEXT" + ")";
         db.execSQL(CREATE_LOGIN_TABLE);
 
@@ -69,16 +70,17 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     /**
      * Storing user details in database
      * */
-    public void addUser(String name, String email, String uid, String bio, String phone, String location, String updated_at, String created_at) {
+    public void addUser(String name, String email, String uid, String blood, String phone, String allergy, String problem, String updated_at, String created_at) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(KEY_NAME, name); // Name
         values.put(KEY_EMAIL, email); // Email
         values.put(KEY_UID, uid); // uid
-        values.put(KEY_BIO, bio); // Bio
+        values.put(KEY_BLOOD, blood); // Blood
         values.put(KEY_SIMU, phone); // Phone
-        values.put(KEY_LOCATION, location); // Location
+        values.put(KEY_ALLERGY, allergy); // Allergy
+        values.put(KEY_PROBLEM, problem); // Condition
         values.put(KEY_UPDATED_AT, updated_at); // Updated At
         values.put(KEY_CREATED_AT, created_at); // Created At
 
@@ -104,11 +106,12 @@ public class SQLiteHandler extends SQLiteOpenHelper {
             user.put("name", cursor.getString(1));
             user.put("email", cursor.getString(2));
             user.put("uid", cursor.getString(3));
-            user.put("bio", cursor.getString(4));
+            user.put("blood", cursor.getString(4));
             user.put("phone", cursor.getString(5));
-            user.put("location", cursor.getString(6));
-            user.put("updated_at", cursor.getString(7));
-            user.put("created_at", cursor.getString(8));
+            user.put("allergy", cursor.getString(6));
+            user.put("problem", cursor.getString(7));
+            user.put("updated_at", cursor.getString(8));
+            user.put("created_at", cursor.getString(9));
         }
         cursor.close();
         db.close();

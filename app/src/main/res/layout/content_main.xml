@@ -37,7 +37,7 @@
         android:gravity="center"
         android:text="@string/cont"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/accent" />
+        android:textColor="@color/colorPrimary" />
 
     <Button
         android:layout_centerHorizontal="true"
