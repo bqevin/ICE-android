@@ -71,30 +71,55 @@ public class AddICEActivity extends AppCompatActivity {
 
 
 
-        done_ice.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                Intent intent = new Intent(AddICEActivity.this,MapsActivity.class);
+//        done_ice.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+////                Intent intent = new Intent(AddICEActivity.this,MapsActivity.class);
+////                startActivity(intent);
+//                Intent intent = new Intent(AddICEActivity.this,ProcessICEActivity.class);
 //                startActivity(intent);
-                Intent intent = new Intent(AddICEActivity.this,ProcessICEActivity.class);
-                startActivity(intent);
-                Snackbar.make(view, "Done adding ICE", Snackbar.LENGTH_LONG)
+//                Snackbar.make(view, "Done adding ICE", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
+
+
+        // Add ICE Button Click event
+        done_ice.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                String blood = inputBlood.getText().toString().trim();
+                String phone = inputPhone.getText().toString().trim();
+                String residence = inputResidence.getText().toString().trim();
+                String name = inputName.getText().toString().trim();
+                String email = inputEmail.getText().toString().trim();
+
+
+                //Check to see user has filled all fields
+                if (!blood.isEmpty() && !phone.isEmpty() && !residence.isEmpty() && !email.isEmpty() && !name.isEmpty()) {
+                    Log.d("Post data","Email: "+email + "  Blood: "+blood + "  Phone: "+phone + "  Residence: "+residence+" Name: "+name );
+                    updateICE(name, email, blood, phone,residence);
+                } else {
+                    Snackbar.make(view, "Please fill your details before updating!", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+//                    Toast.makeText(getApplicationContext(),
+//                            "Please fill your details before updating!", Toast.LENGTH_LONG)
+//                            .show();
+                }
             }
         });
 
     }
 
     /**
-     * Function to store user in MySQL database will post params(tag, name,
-     * email, password) to register url
+     * Function to store ICE in MySQL database will post params(tag, name,
+     * email, phone, residence, blood) to add_contact url
      * */
-    private void updateUser(final String email, final String blood,
-                            final String phone, final String allergy, final String problem) {
+    private void updateICE(final String name, final String email, final String blood,
+                            final String phone, final String residence) {
         // Tag used to cancel the request
-        String tag_string_req = "req_edit_user";
+        String tag_string_req = "req_ice_user";
 
-        pDialog.setMessage("Updating your info ...");
+        pDialog.setMessage("Adding ICE Contact ...");
         showDialog();
 
         StringRequest strReq = new StringRequest(Request.Method.POST,
@@ -109,8 +134,8 @@ public class AddICEActivity extends AppCompatActivity {
                     JSONObject jObj = new JSONObject(response);
                     boolean error = jObj.getBoolean("error");
                     if (!error) {
-                        // User successfully stored in MySQL
-                        // Now store the user in sqlite
+                        // ICE Contact successfully stored in MySQL
+                        // Now store the ICE in sqlite
                         String uid = jObj.getString("uid");
 
                         JSONObject user = jObj.getJSONObject("user");
@@ -126,13 +151,12 @@ public class AddICEActivity extends AppCompatActivity {
                                 .getString("phone");
                         String residence = user
                                 .getString("residence");
-                        // Delete existing data first
-                        db.deleteUsers();
 
-                        // Inserting row in users table
-                        db.addICE(name, email, uid, blood, phone, allergy, problem, updated_at, created_at);
-                        Toast.makeText(getApplicationContext(), "You info has successfully been updated!", Toast.LENGTH_LONG).show();
 
+
+                        // Inserting row in ICE table
+                        db.addICE(name, email, uid, blood, phone, residence, updated_at, created_at);
+                        Toast.makeText(getApplicationContext(), "You have successfully added an Emergency Contact!", Toast.LENGTH_LONG).show();
                         // Launch Process ICE activity
                         Intent intent = new Intent(
                                 AddICEActivity.this,
@@ -165,7 +189,7 @@ public class AddICEActivity extends AppCompatActivity {
 
             @Override
             protected Map<String, String> getParams() {
-                // Posting params to edit url
+                // Posting params to add_ice url
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("phone", phone);
                 params.put("email", email);

@@ -134,9 +134,8 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         values.put(ICE_CREATED_AT, created_at); // Created At
 
         // Inserting Row
-        long id = db.insert(TABLE_USER, null, values);
+        long id = db.insert(TABLE_ICE, null, values);
         db.close(); // Closing database connection
-
         Log.d(TAG, "New user inserted into sqlite: " + id);
     }
 
@@ -214,12 +213,33 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     }
 
     /**
+     * Re crate database Delete all tables and create them again
+     * */
+    public void deleteICE() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        // Delete All Rows
+        db.delete(TABLE_ICE, null, null);
+        db.close();
+
+        Log.d(TAG, "Deleted all ICE info from sqlite");
+    }
+
+
+    /**
      * Actually deletes all tables...not just users
      */
     public void dropDB(){
         SQLiteDatabase db = this.getWritableDatabase();
         // Drop table if existed
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER);
+        // Create tables again
+        onCreate(db);
+    }
+    /**
+     * Delete ICE tables
+     */
+    public void dropICE(){
+        SQLiteDatabase db = this.getWritableDatabase();
         // Drop table if existed
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_ICE);
         // Create tables again
