@@ -78,15 +78,15 @@ public class ProfileEditActivity extends AppCompatActivity {
                 String blood = inputBlood.getText().toString().trim();
                 String phone = inputPhone.getText().toString().trim();
                 String allergy = inputAllergy.getText().toString().trim();
-                String condition = inputCondition.getText().toString().trim();
+                String problem = inputCondition.getText().toString().trim();
 
                 // Fetching email from sqlite
                 HashMap<String, String> user = db.getUserDetails();
                 String email = user.get("email");
                 //Check to see user has filled all fields
-                if (!blood.isEmpty() && !phone.isEmpty() && !allergy.isEmpty() && !condition.isEmpty()) {
-                    Log.d("Post data","Email: "+email + "  Blood: "+blood + "  Phone: "+phone + "  Alllergy: "+allergy+" Condition: "+condition);
-                    updateUser(email, blood, phone, allergy);
+                if (!blood.isEmpty() && !phone.isEmpty() && !allergy.isEmpty() && !problem.isEmpty()) {
+                    Log.d("Post data","Email: "+email + "  Blood: "+blood + "  Phone: "+phone + "  Alllergy: "+allergy+" Condition: "+problem);
+                    updateUser(email, blood, phone, allergy, problem);
                 } else {
                     Toast.makeText(getApplicationContext(),
                             "Please fill your details before updating!", Toast.LENGTH_LONG)
@@ -102,8 +102,8 @@ public class ProfileEditActivity extends AppCompatActivity {
      * Function to store user in MySQL database will post params(tag, name,
      * email, password) to register url
      * */
-    private void updateUser(final String email, final String bio,
-                            final String phone, final String location) {
+    private void updateUser(final String email, final String blood,
+                            final String phone, final String allergy, final String problem) {
         // Tag used to cancel the request
         String tag_string_req = "req_edit_user";
 
@@ -185,8 +185,9 @@ public class ProfileEditActivity extends AppCompatActivity {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("phone", phone);
                 params.put("email", email);
-                params.put("bio", bio);
-                params.put("location", location);
+                params.put("blood", blood);
+                params.put("allergy", allergy);
+                params.put("problem", problem);
 
                 return params;
             }
