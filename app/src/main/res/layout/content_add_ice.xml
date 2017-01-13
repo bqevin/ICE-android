@@ -13,10 +13,9 @@
     tools:showIn="@layout/activity_add_ice">
 
     <LinearLayout
-        android:id="@+id/samples_main"
+        android:id="@+id/ice_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/ice_fab"
         android:orientation="vertical"
         android:padding="16dp">
 
@@ -58,8 +57,7 @@
                 android:id="@+id/ice_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="ICE Phone Number"
-                android:inputType="textEmailAddress" />
+                android:hint="ICE Phone Number" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -84,8 +82,19 @@
                 android:id="@+id/ice_residence"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="ICE Residence"
-                android:inputType="textEmailAddress" />
+                android:hint="ICE Residence(State building,room etc)" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/ice_blood"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="ICE Blood Group" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -100,7 +109,7 @@
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             xmlns:fab="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/done_button"
+            android:id="@+id/ice_done"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"

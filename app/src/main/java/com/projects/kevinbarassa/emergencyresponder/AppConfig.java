@@ -13,4 +13,7 @@ public class AppConfig {
 
     // Server user edit url
     public static String URL_EDIT = "http://agrigender.net/emergency/users/edit.php";
+
+    //Adding ICE Contact url
+    public static String URL_ADD_ICE = "http://agrigender.net/emergency/users/add_ice.php";
 }
