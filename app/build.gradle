@@ -44,7 +44,7 @@ dependencies {
     compile 'com.getbase:floatingactionbutton:1.10.1'
     compile 'com.github.javiersantos:BottomDialogs:1.2.1'
     compile 'com.github.armcha:Vertical-Intro:1.0.1'
-    compile 'com.github.aarsy.googlemapsrippleeffect:googlemapsrippleeffect:1.0.2'
     compile 'com.android.support:multidex:1.0.0'
+    compile 'com.github.aarsy.googlemapsrippleeffect:googlemapsrippleeffect:1.0.2'
     testCompile 'junit:junit:4.12'
 }
