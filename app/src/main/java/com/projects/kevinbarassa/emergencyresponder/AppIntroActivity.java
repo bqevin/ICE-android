@@ -36,24 +36,24 @@ public class AppIntroActivity extends VerticalIntro {
                 .backgroundColor(R.color.accent)
                 .image(R.drawable.available)
                 .title("Always available!")
-                .text("Emergency Responder has been made to stay on active mode even with lock screen" +
-                        "This makes sure you are monitored on every second.")
+                .text("Emergency Responder has been made to stay on active mode even with lock screen." +
+                        "\nThis makes sure you are monitored on every second.")
                 .build());
 
         addIntroItem(new VerticalIntroItem.Builder()
                 .backgroundColor(R.color.colorPrimaryDark)
                 .image(R.drawable.convenient)
                 .title("Very Convenient")
-                .text("Once you have set the ICE Contact list, the rest will be take care by the app for you." +
-                        "Process are done on background so no need to start the app everytime")
+                .text("Once you have set the ICE Contact list, \nthe rest will be take care by the app for you." +
+                        "\n\nProcess are done on background so no need to start the app everytime")
                 .build());
 
         addIntroItem(new VerticalIntroItem.Builder()
                 .backgroundColor(R.color.primary)
                 .image(R.drawable.location)
                 .title("Location tracking")
-                .text("Once emergency mode activated, your location will be monitored for next 24hrs and logged to your private account " +
-                        "ONLY shared by ICE contact list. This can assist recover stolen phones")
+                .text("Once emergency mode activated, your location will be monitored for next 24hrs and logged to your private account, " +
+                        "\nONLY shared by ICE contact list. \nThis can assist recover stolen phones")
                 .build());
 
         setSkipEnabled(true);

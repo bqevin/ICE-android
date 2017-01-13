@@ -25,7 +25,7 @@ public class EmergencyService extends IntentService {
     //Emergency listener
     private ShakeListener mShaker;
     //GPS object
-    GPSTracker gps;
+   // GPSTracker gps;
 
     @Override
     protected void onHandleIntent(Intent intent) {
@@ -62,17 +62,17 @@ public class EmergencyService extends IntentService {
     public void alertSMS() {
         //Location
         // create class object
-        gps = new GPSTracker(EmergencyService.this);
-        // check if GPS enabled
-        if (gps.canGetLocation()) {
-            Toast.makeText(getApplicationContext(), "Your Location is - \nLat: " + gps.getLatitude() + "\nLong: " + gps.getLongitude(), Toast.LENGTH_LONG).show();
-
-        } else {
-            // can't get location
-            // GPS or Network is not enabled
-            // Ask user to enable GPS/network in settings
-            gps.showSettingsAlert();
-        }
+//        gps = new GPSTracker(EmergencyService.this);
+//        // check if GPS enabled
+//        if (gps.canGetLocation()) {
+//            Toast.makeText(getApplicationContext(), "Your Location is - \nLat: " + gps.getLatitude() + "\nLong: " + gps.getLongitude(), Toast.LENGTH_LONG).show();
+//
+//        } else {
+//            // can't get location
+//            // GPS or Network is not enabled
+//            // Ask user to enable GPS/network in settings
+//            gps.showSettingsAlert();
+//        }
 
         //Send SMS on SOS
         String messageToSend = "Am in emergency situation. Kindly call back ASAP";
@@ -95,12 +95,12 @@ public class EmergencyService extends IntentService {
     //Setup notification
     public void welcomeNotification() {
         // Ensure GPS enabled on phone boot
-        if (!gps.canGetLocation()) {
-            // can't get location
-            // GPS or Network is not enabled
-            // Ask user to enable GPS/network in settings
-            gps.showSettingsAlert();
-        }
+//        if (!gps.canGetLocation()) {
+//            // can't get location
+//            // GPS or Network is not enabled
+//            // Ask user to enable GPS/network in settings
+//            gps.showSettingsAlert();
+//        }
 
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)

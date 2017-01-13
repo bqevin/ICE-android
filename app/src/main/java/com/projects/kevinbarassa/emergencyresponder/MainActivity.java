@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         gps = new GPSTracker(MainActivity.this);
         // check if GPS enabled
         if (gps.canGetLocation()) {
-            Toast.makeText(getApplicationContext(), "Your Location is - \nLat: " + gps.getLatitude() + "\nLong: " + gps.getLongitude(), Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(), "Your Location is - \nLat: " + gps.getLatitude() + "\nLong: " + gps.getLongitude(), Toast.LENGTH_LONG).show();
 
         } else {
             // can't get location
@@ -114,8 +114,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
        // SmsManager.getDefault().sendTextMessage(ice1, null, messageToSend, null,null);
         if(!((Activity) this).isFinishing()) {
         new BottomDialog.Builder(this)
-                .setTitle("Broadcast Alert!")
-                .setContent("You just alerted your emergency contact. Keep calm help is on way")
+                .setTitle("Emergency Alert!")
+                .setContent("You just alerted emergency contact to your location "+ gps.getLatitude()+" , "+gps.getLongitude()+". " +
+                        "\n\nTracking on this device has been enabled." +
+                        "\n\nKeep calm help is on way.")
                 //.setIcon(R.drawable.call)
                 .setNegativeText("Close")
                 .setNegativeTextColorResource(R.color.accent)
@@ -125,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
                         .setSmallIcon(R.drawable.call)
-                        .setContentTitle("Broadcast Alert!")
+                        .setContentTitle("Emergency Alert!")
                         .setContentText("Your Emergency Contact has been informed")
                         .setStyle(new NotificationCompat.BigTextStyle().bigText("Keep calm and wait for help!"));
         //Update notification
