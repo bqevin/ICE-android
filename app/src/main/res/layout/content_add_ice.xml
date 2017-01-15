@@ -44,7 +44,11 @@
                 android:id="@+id/ice_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="ICE Full Name" />
+                android:hint="ICE Full Name"
+                android:maxLines="1"
+                android:maxLength="50"
+                android:lines="1"
+                android:singleLine="true" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -57,7 +61,11 @@
                 android:id="@+id/ice_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="ICE Phone Number" />
+                android:hint="ICE Phone Number"
+                android:maxLines="1"
+                android:maxLength="15"
+                android:lines="1"
+                android:singleLine="true" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -82,7 +90,11 @@
                 android:id="@+id/ice_residence"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="ICE Residence(State building,room etc)" />
+                android:hint="ICE Residence(State building,room etc)"
+                android:maxLines="2"
+                android:maxLength="600"
+                android:lines="2"
+                android:singleLine="false" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -94,7 +106,11 @@
                 android:id="@+id/ice_blood"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="ICE Blood Group" />
+                android:hint="ICE Blood Group"
+                android:lines="1"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:maxLength="3"/>
 
         </android.support.design.widget.TextInputLayout>
 

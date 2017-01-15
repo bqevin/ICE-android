@@ -1,211 +1,233 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@color/white">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:id="@+id/edit_profile">
 
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
 
-    <RelativeLayout
-        android:fadingEdge="none"
-        android:id="@+id/wlll"
-        android:layout_height="?attr/actionBarSize"
-        android:layout_width="fill_parent"
-        android:background="@color/primary_dark">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbarP"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-        <TextView
-            android:id="@+id/title_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Kindly update you profile info below"
-            android:ellipsize="marquee"
-            android:textStyle="bold"
-            android:textColor="#ffffff"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:paddingLeft="12dip"
-            android:paddingTop="9dip"
-            android:shadowColor="#000000"
-            android:shadowRadius="1"
-            android:shadowDy="-1"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentBottom="true"
+    </android.support.design.widget.AppBarLayout>
 
-            />
-
-    </RelativeLayout>
-
-    <ScrollView
+    <LinearLayout
         android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        >
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
 
-        <LinearLayout
+
+        <RelativeLayout
+            android:fadingEdge="none"
+            android:id="@+id/wlll"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_width="fill_parent"
+            android:background="@color/primary_dark">
+
+            <TextView
+                android:id="@+id/title_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kindly update you profile info below"
+                android:ellipsize="marquee"
+                android:textStyle="bold"
+                android:textColor="#ffffff"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:paddingLeft="12dip"
+                android:paddingTop="9dip"
+                android:shadowColor="#000000"
+                android:shadowRadius="1"
+                android:shadowDy="-1"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+
+                />
+
+        </RelativeLayout>
+
+        <ScrollView
             android:orientation="vertical"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:padding="4dip"
             >
 
-            <TextView
-                android:id="@+id/carrier"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="This profile will only be shared with your ICE List"
-                android:textColor="#333"
-                android:textStyle="bold"
-                android:padding="7dip"
-                android:shadowColor="#fff"
-                android:shadowRadius="1"
-                android:shadowDy="-1"
-                />
-
-            <TextView
-                android:id="@+id/ks"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="\nWhat is you phone number?"
-                android:textColor="#333"
-                android:padding="3dip"
-                android:shadowColor="#fff"
-                android:shadowRadius="1"
-                android:shadowDy="-1"
-                />
-
-            <EditText
-                android:id="@+id/phone_profile"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:hint="+2547XXXXXXXX"
-                android:minLines="1"
-                ></EditText>
-
-            <TextView
-                android:id="@+id/jkse"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="\nBlood Group"
-                android:textColor="#333"
-                android:padding="3dip"
-                android:shadowColor="#fff"
-                android:shadowRadius="1"
-                android:shadowDy="-1"
-                />
-
-            <EditText
-                android:id="@+id/blood_profile"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:hint="Very useful incase of urgent transfusion"
-                android:minLines="1"
-                android:maxLength="1000"
-                ></EditText>
-
-            <TextView
-                android:id="@+id/kks"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="\nList all allergies you have"
-                android:textColor="#333"
-                android:padding="3dip"
-                android:shadowColor="#fff"
-                android:shadowRadius="1"
-                android:shadowDy="-1"
-                />
-
-            <EditText
-                android:id="@+id/allergy_profile"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:hint="or None if no allergy"
-                android:minLines="1"
-                ></EditText>
-
-            <TextView
-                android:id="@+id/kdds"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="\nWhat condition do you have?"
-                android:textColor="#333"
-                android:padding="3dip"
-                android:shadowColor="#fff"
-                android:shadowRadius="1"
-                android:shadowDy="-1"
-                />
-
-            <EditText
-                android:id="@+id/problem_profile"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:hint="or None if no condition"
-                android:minLines="1"
-                ></EditText>
-
-            <TextView
-                android:id="@+id/num_des"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="\n\n"
-                android:textColor="#333"
-                android:padding="3dip"
-                android:shadowColor="#fff"
-                android:shadowRadius="1"
-                android:shadowDy="-1"
-                />
-
-            <Button
-                android:id="@+id/edit_btn"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="Save Profile"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:padding="4dip"
-                android:background="@color/accent"
-                android:textColor="@color/white"
-                ></Button>
-
             <LinearLayout
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:padding="4dip"
-                android:layout_centerHorizontal="true"
-                android:gravity="center"
-                android:layout_gravity="center"
                 >
 
-                <ProgressBar
-                    android:id="@+id/progressbar"
-                    android:padding="6dip"
+                <TextView
+                    android:id="@+id/carrier"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="This profile will only be shared with your ICE List"
+                    android:textColor="#333"
+                    android:textStyle="bold"
+                    android:padding="7dip"
+                    android:shadowColor="#fff"
+                    android:shadowRadius="1"
+                    android:shadowDy="-1"
+                    />
+
+                <TextView
+                    android:id="@+id/ks"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="\nWhat is you phone number?"
+                    android:textColor="#333"
+                    android:padding="3dip"
+                    android:shadowColor="#fff"
+                    android:shadowRadius="1"
+                    android:shadowDy="-1"
+                    />
+
+                <EditText
+                    android:id="@+id/phone_profile"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="+2547XXXXXXXX"
+                    android:minLines="1"
+                    ></EditText>
+
+                <TextView
+                    android:id="@+id/jkse"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="\nBlood Group"
+                    android:textColor="#333"
+                    android:padding="3dip"
+                    android:shadowColor="#fff"
+                    android:shadowRadius="1"
+                    android:shadowDy="-1"
+                    />
+
+                <EditText
+                    android:id="@+id/blood_profile"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Very useful incase of urgent transfusion"
+                    android:minLines="1"
+                    android:maxLength="1000"
+                    ></EditText>
+
+                <TextView
+                    android:id="@+id/kks"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="\nList all allergies you have"
+                    android:textColor="#333"
+                    android:padding="3dip"
+                    android:shadowColor="#fff"
+                    android:shadowRadius="1"
+                    android:shadowDy="-1"
+                    />
+
+                <EditText
+                    android:id="@+id/allergy_profile"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="or None if no allergy"
+                    android:minLines="1"
+                    ></EditText>
+
+                <TextView
+                    android:id="@+id/kdds"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="\nWhat condition do you have?"
+                    android:textColor="#333"
+                    android:padding="3dip"
+                    android:shadowColor="#fff"
+                    android:shadowRadius="1"
+                    android:shadowDy="-1"
+                    />
+
+                <EditText
+                    android:id="@+id/problem_profile"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="or None if no condition"
+                    android:minLines="1"
+                    ></EditText>
+
+                <TextView
+                    android:id="@+id/num_des"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="\n\n"
+                    android:textColor="#333"
+                    android:padding="3dip"
+                    android:shadowColor="#fff"
+                    android:shadowRadius="1"
+                    android:shadowDy="-1"
+                    />
+
+                <Button
+                    android:id="@+id/edit_btn"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Save Profile"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:padding="4dip"
+                    android:background="@color/accent"
+                    android:textColor="@color/white"
+                    ></Button>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:padding="4dip"
                     android:layout_centerHorizontal="true"
                     android:gravity="center"
                     android:layout_gravity="center"
-                    style="@android:style/Widget.ProgressBar.Small"
-                    android:visibility="gone"
-                    ></ProgressBar>
-                <TextView
-                    android:id="@+id/loadingtext"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="12dip"
-                    android:text="posting.."
-                    android:textColor="#000000"
-                    android:padding="5dip"
-                    android:gravity="center"
-                    android:visibility="gone"
+                    >
 
-                    />
+                    <ProgressBar
+                        android:id="@+id/progressbar"
+                        android:padding="6dip"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        style="@android:style/Widget.ProgressBar.Small"
+                        android:visibility="gone"
+                        ></ProgressBar>
+                    <TextView
+                        android:id="@+id/loadingtext"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12dip"
+                        android:text="posting.."
+                        android:textColor="#000000"
+                        android:padding="5dip"
+                        android:gravity="center"
+                        android:visibility="gone"
+
+                        />
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
-    </ScrollView>
+        </ScrollView>
 
-</LinearLayout>
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>

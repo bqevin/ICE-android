@@ -69,7 +69,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
         db.execSQL(CREATE_LOGIN_TABLE);
 
-        String CREATE_ICE_TABLE = "CREATE TABLE " + TABLE_ICE + "("
+        String CREATE_ICE_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE_ICE + "("
                 + ICE_ID + " INTEGER PRIMARY KEY," + ICE_NAME + " TEXT,"
                 + ICE_EMAIL + " TEXT UNIQUE," + ICE_UID + " TEXT,"
                 + ICE_BLOOD + " TEXT," + ICE_SIMU + " TEXT,"
@@ -194,7 +194,6 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         db.close();
         // return user
         Log.d(TAG, "Fetching user from Sqlite: " + user.toString());
-
         return user;
     }
 
@@ -205,8 +204,6 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         // Delete All Rows
         db.delete(TABLE_USER, null, null);
-        // Delete All Rows
-        db.delete(TABLE_ICE, null, null);
         db.close();
 
         Log.d(TAG, "Deleted all user info from sqlite");
