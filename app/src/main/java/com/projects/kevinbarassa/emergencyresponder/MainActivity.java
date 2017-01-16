@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 //        FabOptions fabOptions = (FabOptions) findViewById(R.id.fab_options);
-//        fabOptions.setButtonsMenu(this, R.menu.menu);
+//        fabOptions.setButtonsMenu(this, R.fab_menu.fab_menu);
 //        fabOptions.setOnClickListener(this);
 
         // SqLite database handler
