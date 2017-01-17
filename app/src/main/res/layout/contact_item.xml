@@ -26,7 +26,7 @@
                 android:layout_height="50dp"
                 android:layout_alignParentLeft="true"
                 android:layout_marginRight="8dp"
-                android:src="@drawable/call"/>
+                android:src="@drawable/contact"/>
 
 
         </LinearLayout>
@@ -39,7 +39,7 @@
             android:layout_alignTop="@+id/avatar_image"
             android:layout_toRightOf="@+id/avatar_image"
             android:text="Kevin Barasa"
-            android:textColor="@color/accent"
+            android:textColor="@color/primary_text"
             android:typeface="sans"
             android:textSize="18dp" />
 
@@ -49,7 +49,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/ice_view_name"
-            android:textColor="#343434"
+            android:textColor="@color/secondary_text"
             android:textSize="15dip"
             android:layout_marginTop="1dip"
             android:layout_toRightOf="@+id/avatar_image"
@@ -66,7 +66,7 @@
             android:text="View"
             android:layout_marginRight="5dip"
             android:textSize="13dip"
-            android:textColor="#ff0307"
+            android:textColor="@color/primary_dark"
             android:textStyle="bold"/>
 
 
