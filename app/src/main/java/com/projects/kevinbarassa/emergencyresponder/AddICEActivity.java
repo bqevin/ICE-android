@@ -134,28 +134,7 @@ public class AddICEActivity extends AppCompatActivity {
                     JSONObject jObj = new JSONObject(response);
                     boolean error = jObj.getBoolean("error");
                     if (!error) {
-                        // ICE Contact successfully stored in MySQL
-                        // Now store the ICE in sqlite
-                        String uid = jObj.getString("uid");
-
-                        JSONObject user = jObj.getJSONObject("user");
-                        String name = user.getString("name");
-                        String email = user.getString("email");
-                        String created_at = user
-                                .getString("created_at");
-                        String updated_at = user
-                                .getString("updated_at");
-                        String blood = user
-                                .getString("blood");
-                        String phone = user
-                                .getString("phone");
-                        String residence = user
-                                .getString("residence");
-
-
-
-                        // Inserting row in ICE table
-                        db.addICE(name, email, uid, blood, phone, residence, updated_at, created_at);
+                        // ICE Contact successful, Open activity
                         Toast.makeText(getApplicationContext(), "You have successfully added an Emergency Contact!", Toast.LENGTH_LONG).show();
                         // Launch Process ICE activity
                         Intent intent = new Intent(
