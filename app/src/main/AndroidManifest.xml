@@ -106,7 +106,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ProcessICEActivity"
+            android:name=".ContactActivity"
             android:label="@string/title_activity_process_ice"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">

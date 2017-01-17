@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/contactLayout"
+        android:padding="5dip" >
+
+        <!--  ListRow Left side icon -->
+        <LinearLayout android:id="@+id/avatar_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="3dip"
+            android:layout_alignParentLeft="true"
+            android:layout_marginRight="5dip">
+
+            <!-- Contact Avatar -->
+            <ImageView
+                android:id="@+id/avatar"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginRight="8dp"
+                android:src="@drawable/call"/>
+
+
+        </LinearLayout>
+
+        <!-- Contact name-->
+        <TextView
+            android:id="@+id/ice_view_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/avatar_image"
+            android:layout_toRightOf="@+id/avatar_image"
+            android:text="Kevin Barasa"
+            android:textColor="@color/accent"
+            android:typeface="sans"
+            android:textSize="18dp" />
+
+        <!-- Contact detail -->
+        <TextView
+            android:id="@+id/residence_dec"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ice_view_name"
+            android:textColor="#343434"
+            android:textSize="15dip"
+            android:layout_marginTop="1dip"
+            android:layout_toRightOf="@+id/avatar_image"
+            android:text="Lives in Mombasa" />
+
+        <!-- Remove CTA -->
+        <TextView
+            android:id="@+id/cta_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@id/ice_view_name"
+            android:gravity="right"
+            android:text="View"
+            android:layout_marginRight="5dip"
+            android:textSize="13dip"
+            android:textColor="#ff0307"
+            android:textStyle="bold"/>
+
+
+    </RelativeLayout>
+    <include layout="@layout/item_divider" />
+</LinearLayout>
+

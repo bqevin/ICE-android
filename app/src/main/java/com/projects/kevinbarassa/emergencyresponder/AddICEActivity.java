@@ -76,7 +76,7 @@ public class AddICEActivity extends AppCompatActivity {
 //            public void onClick(View view) {
 ////                Intent intent = new Intent(AddICEActivity.this,MapsActivity.class);
 ////                startActivity(intent);
-//                Intent intent = new Intent(AddICEActivity.this,ProcessICEActivity.class);
+//                Intent intent = new Intent(AddICEActivity.this,ContactActivity.class);
 //                startActivity(intent);
 //                Snackbar.make(view, "Done adding ICE", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
@@ -160,7 +160,7 @@ public class AddICEActivity extends AppCompatActivity {
                         // Launch Process ICE activity
                         Intent intent = new Intent(
                                 AddICEActivity.this,
-                                ProcessICEActivity.class);
+                                ContactActivity.class);
                         startActivity(intent);
                         finish();
                     } else {
