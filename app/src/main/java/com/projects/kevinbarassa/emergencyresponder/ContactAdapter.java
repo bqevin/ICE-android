@@ -78,7 +78,7 @@ public class ContactAdapter  extends RecyclerView.Adapter<ContactAdapter.Contact
 
                 context.startActivity(intent);
 
-                 Toast.makeText(context, contact.getIce_name(), Toast.LENGTH_LONG).show();
+                 //Toast.makeText(context, contact.getIce_name(), Toast.LENGTH_LONG).show();
             }
         });
     }
