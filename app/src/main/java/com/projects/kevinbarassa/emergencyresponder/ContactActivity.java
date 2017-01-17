@@ -1,7 +1,11 @@
 package com.projects.kevinbarassa.emergencyresponder;
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.graphics.Color;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -33,6 +37,8 @@ public class ContactActivity extends AppCompatActivity {
     private ProgressDialog p;
     private List<ContactItem> contacts;
     private static final String URL_DATA = "http://agrigender.net/emergency/users/ice_contact.php";
+    //Swipe to refresh
+    SwipeRefreshLayout refresherL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +51,11 @@ public class ContactActivity extends AppCompatActivity {
 
 
         recyclerView = (RecyclerView)findViewById(R.id.contact_recycler);
+        //Swipe refresh layout init
+        refresherL = (SwipeRefreshLayout) findViewById(R.id.swiperefresh);
+
         //Ensures every item on recycler view has fixed size
         recyclerView.setHasFixedSize(true);
-
         //Use LinearLayout manager
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -75,34 +83,46 @@ public class ContactActivity extends AppCompatActivity {
             }
 
         } else {
-            // making fresh volley request and getting json
-            JsonObjectRequest jsonReq = new JsonObjectRequest(Request.Method.GET,
-                    URL_DATA, null, new Response.Listener<JSONObject>() {
-
-                @Override
-                public void onResponse(JSONObject response) {
-                    //VolleyLog.d(TAG, "Response: " + response.toString());
-                    if (response != null) {
-                        parseContact(response);
-                        p.dismiss();
-                    }
-                }
-            }, new Response.ErrorListener() {
-
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    // VolleyLog.d(TAG, "Error: " + error.getMessage());
-                    //Dismiss dialog
-                    p.dismiss();
-
-                }
-            });
-
-            // Adding request to volley request queue
-            AppController.getInstance().addToRequestQueue(jsonReq);
+            p.setMessage("Fetching Contacts");
+            p.show();
+            newContactRequest();
         }
 
+                /*
+         *
+         * Refreshes Articles
+         */
+        //Sets animation color
+        refresherL.setColorSchemeColors(Color.parseColor("#ed0202"), Color.parseColor("#c40053"),Color.parseColor("#ffffff"), Color.parseColor("#51af50"));
+        refresherL.setOnRefreshListener(
+                new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+                        //Checks if there is internet before making a data call
+                        if (isNetworkConnected()){
+                            //Ensures consistency of data is observed
+                            adapter.notifyDataSetChanged();
+                            //Clears previous fetched data
+                            contacts.clear();
+                            // Makes a new network call
+                            newContactRequest();
+                            //Stop loading animation
+                            refresherL.setRefreshing(false);
+                        }else {
+                            //Activate internet error Snackbar
+                            Toast.makeText(getApplicationContext(),"No internet connection! Please reconnect and try again",Toast.LENGTH_LONG).show();
+                            //Stop refreshing animation
+                            refresherL.setRefreshing(false);
+                        }
+                    }
+                });
+    }
 
+
+    //Checks internet connection
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        return cm.getActiveNetworkInfo() != null;
     }
 
     /**
@@ -138,6 +158,36 @@ public class ContactActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    private void newContactRequest(){
+        // making fresh volley request and getting json
+        JsonObjectRequest jsonReq = new JsonObjectRequest(Request.Method.GET,
+                URL_DATA, null, new Response.Listener<JSONObject>() {
+
+            @Override
+            public void onResponse(JSONObject response) {
+                //VolleyLog.d(TAG, "Response: " + response.toString());
+                if (response != null) {
+                    parseContact(response);
+                    p.dismiss();
+                }
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // VolleyLog.d(TAG, "Error: " + error.getMessage());
+                //Dismiss dialog
+                p.dismiss();
+                //Error connecting
+                Toast.makeText(getApplicationContext(),"Error connection to internet",Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+        // Adding request to volley request queue
+        AppController.getInstance().addToRequestQueue(jsonReq);
     }
 
 

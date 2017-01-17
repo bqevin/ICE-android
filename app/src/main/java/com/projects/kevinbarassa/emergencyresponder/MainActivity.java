@@ -71,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //Fab and button
         FloatingActionButton add_ice = (com.getbase.floatingactionbutton.FloatingActionButton) findViewById(R.id.add_button);
+        FloatingActionButton view_ice = (com.getbase.floatingactionbutton.FloatingActionButton) findViewById(R.id.view_button);
         Button profile = (Button) findViewById(R.id.profile_btn);
 
         //Add ICE on Fab
@@ -91,6 +92,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent);
             }
         });
+
+        //View ICE on Fab
+        view_ice.setOnClickListener(new OnClickListener(){
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,ContactActivity.class);
+                startActivity(intent);
+            }
+
+        });
+
+
 
     }
     private void sendSMS(){

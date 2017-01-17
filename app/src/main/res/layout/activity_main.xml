@@ -39,6 +39,21 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         />
+    <com.getbase.floatingactionbutton.FloatingActionButton
+        xmlns:fab="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/view_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentBottom="true"
+        fab:fab_icon="@drawable/ic_phone_black"
+        fab:fab_colorNormal="@color/white"
+        fab:fab_title="@string/add_ice"
+        fab:fab_colorPressed="@color/accent"
+        android:layout_gravity="bottom|start"
+        android:layout_margin="@dimen/fab_margin"
+        />
 
 </android.support.design.widget.CoordinatorLayout>
 
