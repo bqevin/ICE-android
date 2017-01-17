@@ -44,6 +44,7 @@ public class ContactAdapter  extends RecyclerView.Adapter<ContactAdapter.Contact
 
         ////inflate the created viewholders with actual data from model
         holder.ice_name.setText(contact.getIce_name());
+        holder.ice_residence.setText("Lives in "+contact.getIce_residence());
 
         //Load image with Piccasso
 //        Picasso.with(context)
@@ -57,15 +58,25 @@ public class ContactAdapter  extends RecyclerView.Adapter<ContactAdapter.Contact
             public void onClick(View view) {
                 //Name
                 String name  = contact.getIce_name();
+                //Email
+                String email  = contact.getIce_email();
+                //Phone
+                String phone  = contact.getIce_phone();
+                //Residence
+                String residence  = contact.getIce_residence();
 
 
                 //Soft transfer
-//                Intent intent = new Intent(context, ContactDetailed.class);
-//                intent.putExtra("EXTRA_NAME", name);
-//
-//                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//
-//                context.startActivity(intent);
+                Intent intent = new Intent(context, ContactDetailed.class);
+                intent.putExtra("EXTRA_NAME", name);
+                intent.putExtra("EXTRA_PHONE", phone);
+                intent.putExtra("EXTRA_EMAIL", email);
+                intent.putExtra("EXTRA_RESIDENCE", residence);
+
+
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                context.startActivity(intent);
 
                  Toast.makeText(context, contact.getIce_name(), Toast.LENGTH_LONG).show();
             }
@@ -82,12 +93,14 @@ public class ContactAdapter  extends RecyclerView.Adapter<ContactAdapter.Contact
     //Viewholder class
     class ContactViewHolder extends RecyclerView.ViewHolder{
         TextView ice_name;
+        TextView ice_residence;
         RelativeLayout contactLayout;
 
         public ContactViewHolder(View itemView) {
             super(itemView);
 
             ice_name = (TextView) itemView.findViewById(R.id.ice_view_name);
+            ice_residence = (TextView) itemView.findViewById(R.id.ice_view_residence);
             contactLayout = (RelativeLayout) itemView.findViewById(R.id.contactLayout);
 
         }

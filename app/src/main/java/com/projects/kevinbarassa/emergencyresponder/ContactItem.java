@@ -10,17 +10,19 @@ public class ContactItem {
     private String ice_phone;
     private String ice_email;
     private String ice_residence;
+    private String ice_created;
 
     //Blank constructor
     public ContactItem(){}
 
     //Main constructor
-    public ContactItem(String ice_name, String ice_blood, String ice_phone, String ice_email, String ice_residence) {
+    public ContactItem(String ice_name, String ice_created, String ice_blood, String ice_phone, String ice_email, String ice_residence) {
         this.ice_name = ice_name;
         this.ice_blood = ice_blood;
         this.ice_phone = ice_phone;
         this.ice_email = ice_email;
         this.ice_residence = ice_residence;
+        this.ice_created = ice_created;
     }
 
     public String getIce_name() {
@@ -29,6 +31,14 @@ public class ContactItem {
 
     public void setIce_name(String ice_name) {
         this.ice_name = ice_name;
+    }
+
+    public String getIce_created() {
+        return ice_created;
+    }
+
+    public void setIce_created(String ice_created) {
+        this.ice_created = ice_created;
     }
 
     public String getIce_blood() {

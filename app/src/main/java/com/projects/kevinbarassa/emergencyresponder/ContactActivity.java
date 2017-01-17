@@ -121,7 +121,11 @@ public class ContactActivity extends AppCompatActivity {
                 ContactItem item = new ContactItem();
 
                 item.setIce_name(o.getString("name"));
-
+                item.setIce_residence(o.getString("residence"));
+                item.setIce_blood(o.getString("blood"));
+                item.setIce_email(o.getString("email"));
+                item.setIce_phone(o.getString("phone"));
+                item.setIce_created(o.getString("created_at"));
 
                 contacts.add(item);
             }

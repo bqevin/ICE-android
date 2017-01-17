@@ -115,6 +115,15 @@
                 android:value="com.projects.kevinbarassa.emergencyresponder.MainActivity" />
         </activity>
         <activity
+            android:name=".ContactDetailed"
+            android:label="@string/title_activity_process_ice"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.projects.kevinbarassa.emergencyresponder.ContactActivity" />
+        </activity>
+        <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_process_ice"
             android:parentActivityName=".MainActivity"
