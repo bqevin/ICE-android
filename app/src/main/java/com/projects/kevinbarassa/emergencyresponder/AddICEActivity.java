@@ -96,8 +96,13 @@ public class AddICEActivity extends AppCompatActivity {
 
                 //Check to see user has filled all fields
                 if (!blood.isEmpty() && !phone.isEmpty() && !residence.isEmpty() && !email.isEmpty() && !name.isEmpty()) {
+
+                    // Fetching user details from sqlite
+                    HashMap<String, String> user = db.getUserDetails();
+                    String parent = user.get("email");
+
                     Log.d("Post data","Email: "+email + "  Blood: "+blood + "  Phone: "+phone + "  Residence: "+residence+" Name: "+name );
-                    updateICE(name, email, blood, phone,residence);
+                    updateICE(name, email, blood, phone,residence, parent);
                 } else {
                     Snackbar.make(view, "Please fill your details before updating!", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
@@ -115,7 +120,7 @@ public class AddICEActivity extends AppCompatActivity {
      * email, phone, residence, blood) to add_contact url
      * */
     private void updateICE(final String name, final String email, final String blood,
-                            final String phone, final String residence) {
+                            final String phone, final String residence, final String parent) {
         // Tag used to cancel the request
         String tag_string_req = "req_ice_user";
 
@@ -175,7 +180,7 @@ public class AddICEActivity extends AppCompatActivity {
                 params.put("blood", blood);
                 params.put("name", name);
                 params.put("residence", residence);
-
+                params.put("parent", parent);
                 return params;
             }
 

@@ -19,6 +19,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.projects.kevinbarassa.emergencyresponder.app.AppController;
+import com.projects.kevinbarassa.emergencyresponder.helper.SQLiteHandler;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,6 +27,7 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -36,9 +38,12 @@ public class ContactActivity extends AppCompatActivity {
     private ContactAdapter adapter;
     private ProgressDialog p;
     private List<ContactItem> contacts;
-    private static final String URL_DATA = "http://agrigender.net/emergency/users/ice_contact.php";
     //Swipe to refresh
     SwipeRefreshLayout refresherL;
+
+    //Init SQLite
+    private SQLiteHandler db;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +69,12 @@ public class ContactActivity extends AppCompatActivity {
 
         //Initiate network action with screen message
         p = new ProgressDialog(this);
+
+        //Satisfy condition to fetch contact relating to you only
+        db = new SQLiteHandler(getApplicationContext());
+        HashMap<String, String> user = db.getUserDetails();
+        String email = user.get("email");
+        String URL_DATA = "http://agrigender.net/emergency/users/ice_contact.php?parent="+email;
 
         //Render contact list
         // We first check for cached request
@@ -161,6 +172,14 @@ public class ContactActivity extends AppCompatActivity {
     }
 
     private void newContactRequest(){
+        /**
+         * TODO: Implement DRY later on
+         */
+        db = new SQLiteHandler(getApplicationContext());
+        HashMap<String, String> user = db.getUserDetails();
+        String email = user.get("email");
+        String URL_DATA = "http://agrigender.net/emergency/users/ice_contact.php?parent="+email;
+
         // making fresh volley request and getting json
         JsonObjectRequest jsonReq = new JsonObjectRequest(Request.Method.GET,
                 URL_DATA, null, new Response.Listener<JSONObject>() {
