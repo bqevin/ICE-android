@@ -46,5 +46,6 @@ dependencies {
     compile 'com.github.armcha:Vertical-Intro:1.0.1'
     compile 'com.android.support:multidex:1.0.0'
     compile 'com.github.aarsy.googlemapsrippleeffect:googlemapsrippleeffect:1.0.2'
+    compile 'com.github.joaquimley:faboptions:1.1.2'
     testCompile 'junit:junit:4.12'
 }
