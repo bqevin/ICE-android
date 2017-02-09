@@ -1,21 +1,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/faboptions_add"
-        android:icon="@drawable/ic_done_black_24dp"
-        android:title="Add" />
-
-    <item
         android:id="@+id/faboptions_view"
-        android:icon="@drawable/ic_done_black_24dp"
+        android:icon="@drawable/ic_view_list_white_24dp"
         android:title="View" />
 
     <item
+        android:id="@+id/faboptions_profile"
+        android:icon="@drawable/ic_person_white_24dp"
+        android:title="Profile" />
+
+    <item
         android:id="@+id/faboptions_edit"
-        android:icon="@drawable/ic_done_black_24dp"
+        android:icon="@drawable/ic_drafts_white_24dp"
         android:title="Edit" />
 
     <item
-        android:id="@+id/faboptions_share"
-        android:icon="@drawable/ic_done_black_24dp"
-        android:title="Share" />
+        android:id="@+id/faboptions_add"
+        android:icon="@drawable/ic_person_add_white_24dp"
+        android:title="Add" />
 </menu>

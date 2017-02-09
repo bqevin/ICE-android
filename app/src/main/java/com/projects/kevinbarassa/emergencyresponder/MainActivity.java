@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.Toast;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.github.javiersantos.bottomdialogs.BottomDialog;
+import com.joaquimley.faboptions.FabOptions;
 import com.projects.kevinbarassa.emergencyresponder.helper.SQLiteHandler;
 import com.projects.kevinbarassa.emergencyresponder.helper.SessionManager;
 
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private SessionManager session;
     private ShakeListener mShaker;
     private SQLiteHandler db;
+    private FabOptions mFabOptions;
     //GPS object
     GPSTracker gps;
 
@@ -38,9 +40,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-//        FabOptions fabOptions = (FabOptions) findViewById(R.id.fab_options);
-//        fabOptions.setButtonsMenu(this, R.fab_menu.fab_menu);
-//        fabOptions.setOnClickListener(this);
+
+        mFabOptions = (FabOptions) findViewById(R.id.fab_options);
+       // mFabOptions.setButtonsMenu(this, R.fab_menu.fab_menu);
+        mFabOptions.setOnClickListener(this);
 
         // SqLite database handler
         db = new SQLiteHandler(getApplicationContext());
@@ -70,38 +73,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         //Fab and button
-        FloatingActionButton add_ice = (com.getbase.floatingactionbutton.FloatingActionButton) findViewById(R.id.add_button);
-        FloatingActionButton view_ice = (com.getbase.floatingactionbutton.FloatingActionButton) findViewById(R.id.view_button);
-        Button profile = (Button) findViewById(R.id.profile_btn);
-
-        //Add ICE on Fab
-        add_ice.setOnClickListener(new OnClickListener(){
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,AddICEActivity.class);
-                startActivity(intent);
-            }
-
-        });
-
-        //Go to profile
-        profile.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Launching the login activity
-                Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        //View ICE on Fab
-        view_ice.setOnClickListener(new OnClickListener(){
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,ContactActivity.class);
-                startActivity(intent);
-            }
-
-        });
-
+//        FloatingActionButton add_ice = (com.getbase.floatingactionbutton.FloatingActionButton) findViewById(R.id.add_button);
+//        FloatingActionButton view_ice = (com.getbase.floatingactionbutton.FloatingActionButton) findViewById(R.id.view_button);
 
 
     }
@@ -172,16 +145,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.faboptions_view:
-                Toast.makeText(MainActivity.this, "View ICE", Toast.LENGTH_SHORT).show();
+                Intent intent2 = new Intent(MainActivity.this,ContactActivity.class);
+                startActivity(intent2);
                 break;
 
 
             case R.id.faboptions_edit:
-                Toast.makeText(MainActivity.this, "Edit ICE", Toast.LENGTH_SHORT).show();
+                Intent intent3 = new Intent(MainActivity.this, ProfileActivity.class);
+                startActivity(intent3);
                 break;
 
-            case R.id.faboptions_share:
-                Toast.makeText(MainActivity.this, "Share ICE", Toast.LENGTH_SHORT).show();
+
+            case R.id.faboptions_profile:
                 break;
 
             default:
